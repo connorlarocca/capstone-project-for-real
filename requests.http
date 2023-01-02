@@ -82,7 +82,7 @@ Content-Type: application/json
 Authorization: Bearer {{connor_jwt}}
 
 {
-  "restaurant_id": 3
+  "restaurant_id": 5
 }
 
 ### USERS INDEX
