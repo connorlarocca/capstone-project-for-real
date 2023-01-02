@@ -1,0 +1,4 @@
+{
+  id: @user.id,
+  image_url: @user.image_url
+}

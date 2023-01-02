@@ -1,0 +1,88 @@
+@user_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NzI3NzIzNjV9.ncgc55MZPIshlE-OYrLCgcpDCjPP17xcO6LPaRBf_UU
+
+@restaurant_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjoxLCJleHAiOjE2NzI3NzMyMDR9.ZJXTPEIwIcCsbgyxBttI_3_3bZ7ccbfn1uQgemK1Wp8
+
+@user2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NzI3NzM1NjV9.rWINRM8QrcM23YbF_GzBrTknlsVO-dXqAmdjVxgZLyc
+
+@restaurant2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjoyLCJleHAiOjE2NzI3NzM2NTB9.wd7QMFlz9xGedXWXa7ixHlUysTYuMvvIS4IHYjFJUr0
+
+### USER CREATE
+POST http://localhost:3000/users.json
+Content-Type: application/json
+# Authorization: Bearer {{jwt}}
+
+{
+  "name": "Johnny Test 2",
+  "email": "test2@example.com",
+  "password": "password",
+  "password_confirmation": "password",
+  "image_url": "image.gov"
+}
+
+
+
+
+
+
+### RESTAURANT CREATE
+
+
+POST http://localhost:3000/restaurants.json
+Content-Type: application/json
+# Authorization: Bearer {{jwt}}
+
+{
+  "name": "Test Grill 2",
+  "email": "testgrill2@example.com",
+  "password": "password",
+  "password_confirmation": "password",
+  "image_url": "image.gov"
+}
+
+
+### SESSIONS CREATE
+
+POST http://localhost:3000/sessions.json
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "password": "password"
+}
+
+### RESTAURANT SESSIONS CREATE
+
+POST http://localhost:3000/restaurant_sessions.json
+Content-Type: application/json
+
+{
+  "email": "testgrill2@example.com",
+  "password": "password"
+}
+
+
+### USER DESTROY
+
+DELETE http://localhost:3000/users/2.json
+Content-Type: application/json
+Authorization: Bearer {{user2_jwt}}
+
+### RESTAURANT DESTROY
+
+DELETE http://localhost:3000/restaurants/2.json
+Content-Type: application/json
+Authorization: Bearer {{restaurant2_jwt}}
+
+### FAVORITES CREATE
+
+POST http://localhost:3000/favorites.json
+Content-Type: application/json
+Authorization: Bearer {{user_jwt}}
+
+{
+  "restaurant_id": 1
+}
+
+### USERS INDEX
+
+GET http://localhost:3000/users/.json
