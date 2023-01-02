@@ -1,6 +1,0 @@
-@restaurants.map do |restaurant|
-  {
-    id: restaurant.id,
-    image_url: restaurant.image_url
-  }
-end
