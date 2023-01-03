@@ -1,12 +1,12 @@
 @user_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NzI3NzIzNjV9.ncgc55MZPIshlE-OYrLCgcpDCjPP17xcO6LPaRBf_UU
 
-@restaurant_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjoxLCJleHAiOjE2NzI3NzMyMDR9.ZJXTPEIwIcCsbgyxBttI_3_3bZ7ccbfn1uQgemK1Wp8
+@restaurant_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjozLCJleHAiOjE2NzI4NTc0NzR9.i8Ctgy4cFBjDa-gsHJ0h2XN9gErrb5EiTOnzzrVbXbM
 
 @user2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NzI3NzM1NjV9.rWINRM8QrcM23YbF_GzBrTknlsVO-dXqAmdjVxgZLyc
 
 @restaurant2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjoyLCJleHAiOjE2NzI3NzM2NTB9.wd7QMFlz9xGedXWXa7ixHlUysTYuMvvIS4IHYjFJUr0
 
-@connor_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzI3Nzc4MTR9.q1nFEN_Ya1t1OoLscKYArnDBvIe1U-wIKbmM4ujFQuI
+@connor_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzI4NTQxODh9.Z0xVFThc1uekZPwWW3REFBZi6qQI-ZnREw1uQtAqEKQ
 
 ### USER CREATE
 POST http://localhost:3000/users.json
@@ -58,7 +58,7 @@ POST http://localhost:3000/restaurant_sessions.json
 Content-Type: application/json
 
 {
-  "email": "testgrill2@example.com",
+  "email": "testpizzeria@example.com",
   "password": "password"
 }
 
@@ -88,3 +88,22 @@ Authorization: Bearer {{connor_jwt}}
 ### USERS INDEX
 
 GET http://localhost:3000/users/.json
+
+### TAGS CREATE
+
+POST http://localhost:3000/restaurant_tags.json
+Content-Type: application/json
+Authorization: Bearer {{restaurant_jwt}}
+
+{
+  "vegan": false,
+  "vegetarian": false,
+  "spicy": true,
+  "gluten_free": false
+}
+
+### DELETE TAGS
+
+DELETE http://localhost:3000/tags/2.json
+Content-Type: application/json
+Authorization: Bearer {{connor_jwt}}

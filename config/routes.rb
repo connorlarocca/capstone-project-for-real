@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :favorites
   resources :tags
+  resources :restaurant_tags
   ### SESSIONS
   post "/sessions" => "sessions#create"
   ### SESSIONS

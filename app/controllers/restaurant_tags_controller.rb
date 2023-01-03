@@ -1,19 +1,19 @@
-class TagsController < ApplicationController
-  before_action :authenticate_user, except: [:index, :show]
+class RestaurantTagsController < ApplicationController
+  before_action :authenticate_restaurant, except: [:index, :show]
 
   def index
-    @tags = Tag.all
+    @tags = RestaurantTag.all
     render json: @tags.as_json
   end
 
   def show
-    @tag = Tag.find_by(id: params[:id])
+    @tag = RestaurantTag.find_by(id: params[:id])
     render :show
   end
 
   def create
-    tag = Tag.create(
-      user_id: current_user.id,
+    tag = RestaurantTag.create(
+      restaurant_id: current_restaurant.id,
       vegan: params[:vegan],
       vegetarian: params[:vegetarian],
       spicy: params[:spicy],
@@ -27,7 +27,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    tag = Tag.find_by(id: params[:id])
+    tag = RestaurantTag.find_by(id: params[:id])
     tag.update(
       vegan: params[:vegan] || tag.vegan,
       vegetarian: params[:vegetarian] || tag.vegetarian,
@@ -42,8 +42,10 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    tag = Tag.find_by(id: params[:id])
+    tag = RestaurantTag.find_by(id: params[:id])
     tag.destroy
     render json: { message: "tag destroyed successfully" }
   end
 end
+
+
