@@ -2,5 +2,6 @@
   id: @user.id,
   name: @user.name,
   image_url: @user.image_url,
-  tags: @user.tags
+  tags: @user.tags,
+  favorites: @user.favorites
 }

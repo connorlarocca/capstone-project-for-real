@@ -1,8 +1,8 @@
 @user_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NzI3NzIzNjV9.ncgc55MZPIshlE-OYrLCgcpDCjPP17xcO6LPaRBf_UU
 
-@restaurant_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjozLCJleHAiOjE2NzI4NTc0NzR9.i8Ctgy4cFBjDa-gsHJ0h2XN9gErrb5EiTOnzzrVbXbM
+@restaurant_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjozLCJleHAiOjE2NzI4NTkyNzJ9.30xDntm4VQT4EUuAz3Ie3uttUDYGCHrpuYzf3uQAXRU
 
-@user2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NzI3NzM1NjV9.rWINRM8QrcM23YbF_GzBrTknlsVO-dXqAmdjVxgZLyc
+@user2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2NzI4NTg4NTZ9.fPx8Jbf7IJAlpdoABzEKtgfL4L3MUn0fDsfm6U3uRJY
 
 @restaurant2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjoyLCJleHAiOjE2NzI3NzM2NTB9.wd7QMFlz9xGedXWXa7ixHlUysTYuMvvIS4IHYjFJUr0
 
@@ -48,7 +48,7 @@ POST http://localhost:3000/sessions.json
 Content-Type: application/json
 
 {
-  "email": "connor@example.com",
+  "email": "eric@example.com",
   "password": "password"
 }
 
@@ -79,10 +79,10 @@ Authorization: Bearer {{restaurant2_jwt}}
 
 POST http://localhost:3000/favorites.json
 Content-Type: application/json
-Authorization: Bearer {{connor_jwt}}
+Authorization: Bearer {{user2_jwt}}
 
 {
-  "restaurant_id": 5
+  "restaurant_id": 4
 }
 
 ### USERS INDEX
@@ -91,15 +91,15 @@ GET http://localhost:3000/users/.json
 
 ### TAGS CREATE
 
-POST http://localhost:3000/restaurant_tags.json
+POST http://localhost:3000/tags.json
 Content-Type: application/json
-Authorization: Bearer {{restaurant_jwt}}
+Authorization: Bearer {{user2_jwt}}
 
 {
-  "vegan": false,
-  "vegetarian": false,
+  "vegan": true,
+  "vegetarian": true,
   "spicy": true,
-  "gluten_free": false
+  "gluten_free": true
 }
 
 ### DELETE TAGS
@@ -107,3 +107,14 @@ Authorization: Bearer {{restaurant_jwt}}
 DELETE http://localhost:3000/tags/2.json
 Content-Type: application/json
 Authorization: Bearer {{connor_jwt}}
+
+
+### RESTAURANT TAGS EDIT
+
+PATCH http://localhost:3000/restaurant_tags/1.json
+Content-Type: application/json
+Authorization: Bearer {{restaurant_jwt}}
+
+{
+  "vegetarian": true
+}
