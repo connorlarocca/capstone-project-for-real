@@ -2,11 +2,11 @@
 
 @restaurant_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjozLCJleHAiOjE2NzI4NTkyNzJ9.30xDntm4VQT4EUuAz3Ie3uttUDYGCHrpuYzf3uQAXRU
 
-@user2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2NzI4NTg4NTZ9.fPx8Jbf7IJAlpdoABzEKtgfL4L3MUn0fDsfm6U3uRJY
+@user2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2NzI4NjA4Mzh9.l6bDGDWHLGKrmQGrwW5NLlZLi-MnhiDFMoEH78jQK-A
 
-@restaurant2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjoyLCJleHAiOjE2NzI3NzM2NTB9.wd7QMFlz9xGedXWXa7ixHlUysTYuMvvIS4IHYjFJUr0
+@restaurant2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjo3LCJleHAiOjE2NzI4NjEwMDl9.xiU9DNYAMIpkRj0BwFS0SP8DLMjyFcw3eUbCJvnGzW4
 
-@connor_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzI4NTQxODh9.Z0xVFThc1uekZPwWW3REFBZi6qQI-ZnREw1uQtAqEKQ
+@connor_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzMwNDU3NjR9.rFODLBzekMt8TVAV0XidzSfIcWI1G3MYKsUUylIlTrs
 
 ### USER CREATE
 POST http://localhost:3000/users.json
@@ -14,8 +14,8 @@ Content-Type: application/json
 # Authorization: Bearer {{jwt}}
 
 {
-  "name": "Connor",
-  "email": "connor@example.com",
+  "name": "New Test",
+  "email": "newtest@example.com",
   "password": "password",
   "password_confirmation": "password",
   "image_url": "image.gov"
@@ -34,8 +34,8 @@ Content-Type: application/json
 # Authorization: Bearer {{jwt}}
 
 {
-  "name": "Test Indian",
-  "email": "testindian@example.com",
+  "name": "Test 2",
+  "email": "test2@example.com",
   "password": "password",
   "password_confirmation": "password",
   "image_url": "image.gov"
@@ -48,7 +48,7 @@ POST http://localhost:3000/sessions.json
 Content-Type: application/json
 
 {
-  "email": "eric@example.com",
+  "email": "connor@example.com",
   "password": "password"
 }
 
@@ -58,14 +58,14 @@ POST http://localhost:3000/restaurant_sessions.json
 Content-Type: application/json
 
 {
-  "email": "testpizzeria@example.com",
+  "email": "test2@example.com",
   "password": "password"
 }
 
 
 ### USER DESTROY
 
-DELETE http://localhost:3000/users/2.json
+DELETE http://localhost:3000/users/7.json
 Content-Type: application/json
 Authorization: Bearer {{user2_jwt}}
 
@@ -82,7 +82,7 @@ Content-Type: application/json
 Authorization: Bearer {{user2_jwt}}
 
 {
-  "restaurant_id": 4
+  "restaurant_id": 3
 }
 
 ### USERS INDEX
@@ -91,13 +91,13 @@ GET http://localhost:3000/users/.json
 
 ### TAGS CREATE
 
-POST http://localhost:3000/tags.json
+POST http://localhost:3000/restaurant_tags.json
 Content-Type: application/json
-Authorization: Bearer {{user2_jwt}}
+Authorization: Bearer {{restaurant2_jwt}}
 
 {
-  "vegan": true,
-  "vegetarian": true,
+  "vegan": false,
+  "vegetarian": false,
   "spicy": true,
   "gluten_free": true
 }
@@ -111,10 +111,26 @@ Authorization: Bearer {{connor_jwt}}
 
 ### RESTAURANT TAGS EDIT
 
-PATCH http://localhost:3000/restaurant_tags/1.json
+PATCH http://localhost:3000/restaurant_tags/3.json
 Content-Type: application/json
-Authorization: Bearer {{restaurant_jwt}}
+Authorization: Bearer {{restaurant2_jwt}}
 
 {
   "vegetarian": true
 }
+
+### RESTAURANT EDIT
+
+PATCH http://localhost:3000/restaurants/7.json
+Content-Type: application/json
+Authorization: Bearer {{restaurant2_jwt}}
+
+{
+  "phone_number": "123-456-7890",
+  "website": "wikipedia.org"
+}
+
+### RANDOM RESTAURANT
+GET http://localhost:3000/random.json
+Content-Type: application/json
+Authorization: Bearer {{connor_jwt}}

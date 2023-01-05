@@ -24,8 +24,14 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    favorite = Favorite.find_by(id: params[:id])
-    favorite.destroy
-    render json: { message: "Favorite destroyed successfully" }
+    if user.id == current_user.id
+      if user.delete
+        render json: { message: "user Succesfully Removed" }
+      else
+        render json: { errors: user.errors.full_messages }, status: :bad_request
+      end
+    else
+      render json: { errors: user.errors.full_messages }, status: 401
+    end
   end
 end

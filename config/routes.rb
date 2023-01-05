@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :favorites
   resources :tags
   resources :restaurant_tags
+  ### RANDOM
+  get "/random" => "restaurants#random"
   ### SESSIONS
   post "/sessions" => "sessions#create"
   ### SESSIONS

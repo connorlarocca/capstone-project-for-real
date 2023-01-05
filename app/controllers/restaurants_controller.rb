@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_restaurant, except: [:index, :create, :show]
+  before_action :authenticate_restaurant, except: [:index, :create, :show, :random]
 
   def index
     @restaurants = Restaurant.all
@@ -26,23 +26,40 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    restaurant = Restaurant.find_by(id: params["id"])
-    restaurant.name = params["name"] || restaurant.name
-    restaurant.email = params["email"] || restaurant.email
-    @restaurant = restaurant
-    if restaurant.save
-      render json: restaurant
+    restaurant = Restaurant.find_by(id: params[:id])
+    if restaurant.id == current_restaurant.id
+      restaurant.name = params["name"] || restaurant.name
+      restaurant.email = params["email"] || restaurant.email
+      restaurant.phone_number = params["phone_number"] || restaurant.phone_number
+      restaurant.website = params["website"] || restaurant.website
+      restaurant.image_url = params["image_url"] || restaurant.image_url
+
+      @restaurant = restaurant
+      if restaurant.save
+        render json: restaurant
+      else
+        render json: { errors: restaurant.errors.full_messages }, status: 418
+      end
     else
-      render json: { errors: restaurant.errors.full_messages }, status: 418
+      render json: { errors: restaurant.errors.full_messages }, status: 401
     end
   end
 
   def destroy
     restaurant = Restaurant.find_by(id: params[:id])
-    if restaurant.delete
-      render json: { message: "restaurant Succesfully Removed" }
+    if restaurant.id == current_restaurant.id
+      if restaurant.delete
+        render json: { message: "restaurant Succesfully Removed" }
+      else
+        render json: { errors: restaurant.errors.full_messages }, status: :bad_request
+      end
     else
-      render json: { errors: restaurant.errors.full_messages }, status: :bad_request
+      render json: { errors: restaurant.errors.full_messages }, status: 401
     end
+  end
+
+  def random
+    restaurant = Restaurant.all.sample()
+    render json: restaurant.as_json
   end
 end
