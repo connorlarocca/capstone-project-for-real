@@ -59,7 +59,7 @@ class RestaurantsController < ApplicationController
   end
 
   def random
-    restaurant = Restaurant.all.sample()
-    render json: restaurant.as_json
+    @restaurant = Restaurant.all.sample()
+    render :show
   end
 end
