@@ -1,14 +1,14 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def index
     @favorites = Favorite.all
-    render @favorites.as_json
+    render json: @favorites.as_json
   end
 
   def show
     @favorite = Favorite.find_by(id: params[:id])
-    render @favorite.as_json
+    render json: @favorite.as_json
   end
 
   def create
