@@ -1,0 +1,7 @@
+{
+  id: @favorite.id,
+  name: @favorite.name,
+  image_url: @favorite.image_url,
+  phone_number: @favorite.phone_number,
+  website: @favorite.website,
+}

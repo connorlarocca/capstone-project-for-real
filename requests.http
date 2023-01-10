@@ -6,7 +6,7 @@
 
 @restaurant2_jwt = eyJhbGciOiJIUzI1NiJ9.eyJyZXN0YXVyYW50X2lkIjo3LCJleHAiOjE2NzI4NjEwMDl9.xiU9DNYAMIpkRj0BwFS0SP8DLMjyFcw3eUbCJvnGzW4
 
-@connor_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzMwNDU3NjR9.rFODLBzekMt8TVAV0XidzSfIcWI1G3MYKsUUylIlTrs
+@connor_jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NzM0NjUyNzd9.lSkh7tUr7yJEGImtbeu2cnnHitKSVuB02uwkQ411wCM
 
 ### USER CREATE
 POST http://localhost:3000/users.json
@@ -34,11 +34,13 @@ Content-Type: application/json
 # Authorization: Bearer {{jwt}}
 
 {
-  "name": "Test 2",
-  "email": "test2@example.com",
+  "name": "Halal Guys",
+  "email": "halalguys@example.com",
   "password": "password",
   "password_confirmation": "password",
-  "image_url": "image.gov"
+  "website": "https://thehalalguys.com",
+  "phone_number": "(215)-925-2229",
+  "image_url": "https://thehalalguys.com/img/upload/hero-image-1_2.jpg"
 }
 
 
@@ -79,10 +81,10 @@ Authorization: Bearer {{restaurant2_jwt}}
 
 POST http://localhost:3000/favorites.json
 Content-Type: application/json
-Authorization: Bearer {{user2_jwt}}
+Authorization: Bearer {{connor_jwt}}
 
 {
-  "restaurant_id": 3
+  "restaurant_id": 11
 }
 
 ### USERS INDEX
@@ -134,3 +136,10 @@ Authorization: Bearer {{restaurant2_jwt}}
 GET http://localhost:3000/random.json
 Content-Type: application/json
 Authorization: Bearer {{connor_jwt}}
+
+### FAVORITES DELETE
+
+DELETE http://localhost:3000/favorites/27.json
+Content-Type: application/json
+Authorization: Bearer {{connor_jwt}}
+

@@ -12,6 +12,9 @@ class RestaurantsController < ApplicationController
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
+      phone_number: params[:phone_number],
+      website: params[:website],
+      image_url: params[:image_url],
     )
     if @restaurant_signup.save
       render json: @restaurant_signup.as_json
