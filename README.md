@@ -6,7 +6,7 @@ DECIDE 4 ME uses a Rails backend with a React frontend, and uses Bootstrap for s
 
 
 ## Installation
-Important note: This is just the backend for the app! The frontend to the app is available here: https://github.com/connorlarocca/capstone-frontend
+Important note: This is just the backend for the app! The frontend to the app is available here: https://github.com/connorlarocca/decide4me-frontend
 
 After cloning, move to the directory where the app backend is installed.
 ```bash
